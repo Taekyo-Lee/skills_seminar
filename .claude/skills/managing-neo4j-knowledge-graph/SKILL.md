@@ -65,7 +65,7 @@ Upsert semantics — creates if not exists, updates if exists (matched by primar
 All scripts are run from the **project root** directory with:
 
 ```bash
-uv run --native-tls --env-file /home/jetlee/workspace/skills_seminar/.env .claude/skills/managing-neo4j-knowledge-graph/scripts/<script_name>.py
+uv run --native-tls --env-file ../../../.env .claude/skills/managing-neo4j-knowledge-graph/scripts/<script_name>.py
 ```
 
 - **`.claude/skills/managing-neo4j-knowledge-graph/scripts/at_first_glance.py`** — Get a quick overview of the current Neo4j instance (node count, relationship count, and their details). Run this first to understand what's in the graph.
