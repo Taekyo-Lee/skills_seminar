@@ -110,7 +110,7 @@ def run_health_check() -> int:
         node_count = len(nodes)
         rel_count = len(rels)
 
-        labels = sorted({n.get("label", n.get("_label", "")) for n in nodes} if nodes else set())
+        labels = sorted({n.label for n in nodes} if nodes else set())
 
         print(f"\n  Graph statistics")
         print(f"    Nodes .............. {node_count}")
