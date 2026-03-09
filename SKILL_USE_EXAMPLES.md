@@ -72,6 +72,19 @@ Example user prompts that trigger the Neo4j knowledge graph skill. These demonst
 
 ---
 
+## How It Works: Script vs Ad-Hoc
+
+The skill serves two types of requests:
+
+| Request Type | How the Agent Handles It |
+|---|---|
+| "Run the query demo" | Runs pre-built `query_graph.py` directly |
+| "Find all active projects" | Writes a temporary `_adhoc.py` script with the query, runs it, deletes it |
+
+**Why ad-hoc scripts?** The `a2g_neo4j` package requires dependencies (`neo4j`, `pydantic`, etc.) declared in a `# /// script` header. Inline `python3 -c` or `uv run -c` commands can't declare these dependencies, so they fail. The skill instructs the agent to write a temp file with the proper header instead.
+
+---
+
 ## Non-Matching Prompts (should NOT trigger the skill)
 
 | Prompt | Why it doesn't match |
