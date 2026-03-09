@@ -24,9 +24,6 @@ Exit codes:
 """
 
 import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "a2g_neo4j"))
 
 from a2g_neo4j import Neo4jManager
 from a2g_neo4j.neo4j_schemas.entity_search_schemas import (
