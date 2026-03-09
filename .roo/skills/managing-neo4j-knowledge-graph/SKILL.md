@@ -60,13 +60,13 @@ Upsert semantics — creates if not exists, updates if exists (matched by primar
 
 - `references/` — supplementary materials (e.g., schema docs, example data)
 
+
 ## Available Scripts on Demand
 
-All scripts are run from the **project root** directory with:
-
 ```bash
-uv run --native-tls --env-file ../../../.env .roo/skills/managing-neo4j-knowledge-graph/scripts/<script_name>.py
+Run scripts using uv with environment variables loaded from the .env file from the project root:
+uv run --native-tls --env-file ../../../.env scripts/<script_name>.py
 ```
 
-- **`.roo/skills/managing-neo4j-knowledge-graph/scripts/at_first_glance.py`** — Get a quick overview of the current Neo4j instance (node count, relationship count, and their details). Run this first to understand what's in the graph.
-- **`.roo/skills/managing-neo4j-knowledge-graph/scripts/health_check.py`** — Verify connectivity to the Neo4j instance. Run this to confirm the database is reachable and credentials are valid.
+- **`scripts/at_first_glance.py`** — Get a quick overview of the current Neo4j instance (node count, relationship count, and their details). Run this first to understand what's in the graph.
+- **`scripts/health_check.py`** — Verify connectivity to the Neo4j instance. Run this to confirm the database is reachable and credentials are valid.
