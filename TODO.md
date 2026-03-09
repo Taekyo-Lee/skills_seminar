@@ -10,14 +10,14 @@ Create professional seminar demo scripts covering the full CRUD lifecycle using 
 
 Target: `.claude/skills/managing-neo4j-knowledge-graph/scripts/`
 
-- [ ] **1.1** Create `create_graph.py` — Build the knowledge graph
+- [x] **1.1** Create `create_graph.py` — Build the knowledge graph
   - Clean slate with `delete_all(namespace="seminar_demo")`
   - Factory methods: `create_nodes()` single + batch, `create_rels()` batch
   - Upsert all to DB, show execution context
   - 14 nodes (4 Researchers, 3 Projects, 3 Publications, 4 Technologies)
   - ~16 relationships (WORKS_ON, AUTHORED, USES, CITES)
 
-- [ ] **1.2** Create `query_graph.py` — Search and read patterns
+- [x] **1.2** Create `query_graph.py` — Search and read patterns
   - Get all nodes (no criteria), group by label
   - Simple `NodeSearch` (label, property, AND logic)
   - Q operators: `Q.gte()`, `Q.gt()`, `Q.contains()`
@@ -25,14 +25,14 @@ Target: `.claude/skills/managing-neo4j-knowledge-graph/scripts/`
   - `RelationshipSearch` with start/end node criteria
   - Execution context inspection
 
-- [ ] **1.3** Create `update_graph.py` — Update semantics via upsert
+- [x] **1.3** Create `update_graph.py` — Update semantics via upsert
   - Modify existing property (before/after)
   - Add new property to existing node
   - Remove property by setting to `None`
   - Update relationship properties
   - Bulk update with execution context
 
-- [ ] **1.4** Create `teardown_graph.py` — Delete operations
+- [x] **1.4** Create `teardown_graph.py` — Delete operations
   - Delete relationships by type
   - Delete relationships by start/end criteria
   - Delete nodes by criteria (DETACH DELETE)
@@ -41,23 +41,23 @@ Target: `.claude/skills/managing-neo4j-knowledge-graph/scripts/`
 
 ## Phase 2: Test Scripts
 
-- [ ] **2.1** Run `health_check.py` — verify connectivity
-- [ ] **2.2** Run `create_graph.py` — verify exit code 0
-- [ ] **2.3** Run `query_graph.py` — verify exit code 0
-- [ ] **2.4** Run `update_graph.py` — verify exit code 0
-- [ ] **2.5** Run `teardown_graph.py` — verify exit code 0
-- [ ] **2.6** Run `health_check.py` again — confirm empty graph
+- [x] **2.1** Run `health_check.py` — verify connectivity
+- [x] **2.2** Run `create_graph.py` — verify exit code 0
+- [x] **2.3** Run `query_graph.py` — verify exit code 0
+- [x] **2.4** Run `update_graph.py` — verify exit code 0
+- [x] **2.5** Run `teardown_graph.py` — verify exit code 0
+- [x] **2.6** Run `health_check.py` again — confirm empty graph
 
 ## Phase 3: Deploy to Other Platforms
 
-- [ ] **3.1** Copy 4 scripts to `.gemini/skills/managing-neo4j-knowledge-graph/scripts/`
-- [ ] **3.2** Copy 4 scripts to `.roo/skills/managing-neo4j-knowledge-graph/scripts/`
+- [x] **3.1** Copy 4 scripts to `.gemini/skills/managing-neo4j-knowledge-graph/scripts/`
+- [x] **3.2** Copy 4 scripts to `.roo/skills/managing-neo4j-knowledge-graph/scripts/`
 
 ## Phase 4: Update SKILL.md (all 3 platforms)
 
-- [ ] **4.1** Update `.claude/skills/managing-neo4j-knowledge-graph/SKILL.md` — add all 4 new scripts
-- [ ] **4.2** Update `.gemini/skills/managing-neo4j-knowledge-graph/SKILL.md` — add all 4 new scripts
-- [ ] **4.3** Update `.roo/skills/managing-neo4j-knowledge-graph/SKILL.md` — add all 4 new scripts
+- [x] **4.1** Update `.claude/skills/managing-neo4j-knowledge-graph/SKILL.md` — add all 4 new scripts
+- [x] **4.2** Update `.gemini/skills/managing-neo4j-knowledge-graph/SKILL.md` — add all 4 new scripts
+- [x] **4.3** Update `.roo/skills/managing-neo4j-knowledge-graph/SKILL.md` — add all 4 new scripts
 
 ---
 
