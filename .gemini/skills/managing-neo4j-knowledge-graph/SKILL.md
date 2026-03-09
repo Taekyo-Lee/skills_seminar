@@ -60,17 +60,87 @@ Upsert semantics — creates if not exists, updates if exists (matched by primar
 
 - `references/` — supplementary materials (e.g., schema docs, example data)
 
+## Important Behavioral Rules
+
+1. **Do NOT run health_check.py** unless the user explicitly asks about connectivity, health, or status. Go straight to the query.
+2. **Do NOT use `python3 -c` or `uv run -c`** — they lack the required dependencies.
+3. All commands run from the project root: `/home/jetlee/workspace/skills_seminar`
+
+## Running Ad-Hoc Queries
+
+For any user request that is NOT an exact match for a pre-built script, follow these 3 steps:
+
+**Step 1.** Write a temporary script to this absolute path:
+`/home/jetlee/workspace/skills_seminar/.gemini/skills/managing-neo4j-knowledge-graph/scripts/_adhoc.py`
+
+```python
+# /// script
+# dependencies = [
+#   "colorlog>=6.10.1",
+#   "json5>=0.12.1",
+#   "neo4j>=6.0.3",
+#   "pydantic>=2.12.5",
+#   "python-dateutil>=2.9.0.post0",
+# ]
+# ///
+from a2g_neo4j import Neo4jManager
+from a2g_neo4j.neo4j_schemas.entity_search_schemas import NodeSearch, NodeSearchUnion, RelationshipSearch
+from a2g_neo4j.query_tools import Q
+
+NAMESPACE = "seminar_demo"
+manager = Neo4jManager(log_level="warning")
+
+# --- YOUR QUERY HERE ---
+```
+
+**Step 2.** Run it:
+```bash
+uv run --native-tls --env-file .env /home/jetlee/workspace/skills_seminar/.gemini/skills/managing-neo4j-knowledge-graph/scripts/_adhoc.py
+```
+
+**Step 3.** Delete the file after execution:
+```bash
+rm /home/jetlee/workspace/skills_seminar/.gemini/skills/managing-neo4j-knowledge-graph/scripts/_adhoc.py
+```
+
+### Common query patterns
+
+```python
+# Find nodes by label + property
+resp = manager.get_nodes(NodeSearch(label="Project", status="active"), namespace=NAMESPACE)
+for n in resp.result:
+    print(f"{n.properties['code']}: {n.properties['title']}")
+
+# Q operators (gte, gt, lt, lte, contains, ne, in_list, is_null, is_not_null)
+resp = manager.get_nodes(NodeSearch(label="Researcher", h_index=Q.gte(10)), namespace=NAMESPACE)
+
+# OR logic with NodeSearchUnion builder
+search = NodeSearchUnion.builder().add(label="Researcher", role="PhD Student").add(label="Researcher", role="Postdoc").build()
+resp = manager.get_nodes(search, namespace=NAMESPACE)
+
+# Relationships by type + start/end criteria
+resp = manager.get_rels(RelationshipSearch(rel_type="WORKS_ON", start=NodeSearch(label="Researcher", email="alice@lab.ai")), namespace=NAMESPACE)
+for r in resp.result:
+    print(f"{r.start.properties.get('name')} —[{r.rel_type}]→ {r.end.properties.get('code', r.end.properties.get('title'))}")
+
+# Create + upsert a node
+node = manager.create_nodes({"label": "Researcher", "primary_key": "email", "email": "eve@lab.ai", "name": "Dr. Eve Kim"}, namespace=NAMESPACE)
+manager.upsert_nodes([node])
+
+# Delete by criteria
+manager.delete_nodes(NodeSearch(label="Technology", name="ROS2"), namespace=NAMESPACE)
+```
+
 ## Available Scripts on Demand
 
-All scrips must be run on project root folder (/home/jetlee/workspace/skills_seminar)
+Run from the project root (`/home/jetlee/workspace/skills_seminar`):
 
 ```bash
-Run scripts using uv with environment variables loaded from the .env file from the project root:
 uv run --native-tls --env-file .env /home/jetlee/workspace/skills_seminar/.gemini/skills/managing-neo4j-knowledge-graph/scripts/<script_name>.py
 ```
 
-- **`health_check.py`** — Verify connectivity to the Neo4j instance. Run this to confirm the database is reachable and credentials are valid.
-- **`create_graph.py`** — Build an AI Research Lab knowledge graph (14 nodes, 19 relationships). Demonstrates `create_nodes()`, `create_rels()`, `upsert_nodes()`, `upsert_rels()`, and `delete_all(namespace=...)`.
-- **`query_graph.py`** — Search and read patterns: `NodeSearch`, `Q` operators (`Q.gte()`, `Q.gt()`, `Q.contains()`), `NodeSearchUnion` (builder), `RelationshipSearch`, and execution context inspection.
-- **`update_graph.py`** — Update semantics via upsert: modify properties, add new properties, remove properties (set to `None`), update relationship properties, and bulk updates with execution context.
-- **`teardown_graph.py`** — Delete operations: `delete_rels()` by type and criteria, `delete_nodes()` by criteria, `delete_all(namespace=...)`, and verification.
+- **`health_check.py`** — Verify connectivity. Only run when the user explicitly asks about health, status, or connectivity.
+- **`create_graph.py`** — Build an AI Research Lab knowledge graph (14 nodes, 19 relationships).
+- **`query_graph.py`** — Full query demo: NodeSearch, Q operators, NodeSearchUnion, RelationshipSearch.
+- **`update_graph.py`** — Update demo: modify/add/remove properties, update relationships, bulk updates.
+- **`teardown_graph.py`** — Delete demo: selective deletes, bulk cleanup, verification.
