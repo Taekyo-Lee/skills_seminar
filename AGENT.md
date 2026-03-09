@@ -27,6 +27,14 @@ This is a **demo project** that showcases how to build and use **agent skills** 
 
 All skill scripts use `uv run --native-tls --env-file .env` with the shared `.env` at the project root. Copy `env.example` to `.env` and fill in your credentials. Follow the instruction for running scripts for each skill.
 
+### Script Execution Working Directory
+
+Each platform runs skill scripts from a different working directory. This affects how paths (e.g., to `.env` or script files) are specified in each skill's `SKILL.md`:
+
+- **Claude Code** — runs scripts from the **skill directory** itself (e.g., `.claude/skills/<skill-name>/`), so relative paths like `../../../.env` are used.
+- **Gemini CLI** — runs scripts from the **project root**, so `.env` is referenced directly and script paths use absolute paths.
+- **Roo Code** — runs scripts from the **project root**, same as Gemini CLI.
+
 ## Available Skills
 
 | Skill | Description |
