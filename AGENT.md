@@ -18,13 +18,14 @@ This is a **demo project** that showcases how to build and use **agent skills** 
 | `GEMINI.md` | Project documentation and Gemini CLI context |
 | `CLAUDE.md` | Project documentation and Claude Code context |
 | `AGENT.md` | Project documentation for other agent platforms |
+| `env.example` | Shared environment variables for all skills |
 | `.gemini/skills/` | Skill definitions for **Gemini CLI** |
 | `.claude/skills/` | Skill definitions for **Claude Code** |
 | `.roo/skills/` | Skill definitions for **Roo Code** |
 
 ## Running Scripts
 
-All skill scripts use `uv run --native-tls --env-file` with an env-file for necessary credentials or environment variables. Follow the instruction for running scripts for each skill.
+All skill scripts use `uv run --native-tls --env-file .env` with the shared `.env` at the project root. Copy `env.example` to `.env` and fill in your credentials. Follow the instruction for running scripts for each skill.
 
 ## Available Skills
 
