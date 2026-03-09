@@ -67,7 +67,11 @@ All scrips must be run on project root folder (/home/jetlee/workspace/skills_sem
 
 ```bash
 Run scripts using uv with environment variables loaded from the .env file from the project root:
-uv run --native-tls --env-file .env /home/jetlee/workspace/skills_seminar/.gemini/skills/managing-neo4j-knowledge-graph/scripts/<script_name>.py
+uv run --native-tls --env-file .env /home/jetlee/workspace/skills_seminar/.roo/skills/managing-neo4j-knowledge-graph/scripts/<script_name>.py
 ```
 
 - **`health_check.py`** — Verify connectivity to the Neo4j instance. Run this to confirm the database is reachable and credentials are valid.
+- **`create_graph.py`** — Build an AI Research Lab knowledge graph (14 nodes, 19 relationships). Demonstrates `create_nodes()`, `create_rels()`, `upsert_nodes()`, `upsert_rels()`, and `delete_all(namespace=...)`.
+- **`query_graph.py`** — Search and read patterns: `NodeSearch`, `Q` operators (`Q.gte()`, `Q.gt()`, `Q.contains()`), `NodeSearchUnion` (builder), `RelationshipSearch`, and execution context inspection.
+- **`update_graph.py`** — Update semantics via upsert: modify properties, add new properties, remove properties (set to `None`), update relationship properties, and bulk updates with execution context.
+- **`teardown_graph.py`** — Delete operations: `delete_rels()` by type and criteria, `delete_nodes()` by criteria, `delete_all(namespace=...)`, and verification.
