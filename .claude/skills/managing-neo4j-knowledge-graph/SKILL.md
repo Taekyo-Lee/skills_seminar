@@ -68,3 +68,7 @@ uv run --native-tls --env-file ../../../.env scripts/<script_name>.py
 ```
 
 - **`scripts/health_check.py`** — Verify connectivity to the Neo4j instance. Run this to confirm the database is reachable and credentials are valid.
+- **`scripts/create_graph.py`** — Build an AI Research Lab knowledge graph (14 nodes, 19 relationships). Demonstrates `create_nodes()`, `create_rels()`, `upsert_nodes()`, `upsert_rels()`, and `delete_all(namespace=...)`.
+- **`scripts/query_graph.py`** — Search and read patterns: `NodeSearch`, `Q` operators (`Q.gte()`, `Q.gt()`, `Q.contains()`), `NodeSearchUnion` (builder), `RelationshipSearch`, and execution context inspection.
+- **`scripts/update_graph.py`** — Update semantics via upsert: modify properties, add new properties, remove properties (set to `None`), update relationship properties, and bulk updates with execution context.
+- **`scripts/teardown_graph.py`** — Delete operations: `delete_rels()` by type and criteria, `delete_nodes()` by criteria, `delete_all(namespace=...)`, and verification.
