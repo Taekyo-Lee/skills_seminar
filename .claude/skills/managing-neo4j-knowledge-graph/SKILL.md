@@ -67,5 +67,4 @@ Run scripts using uv with environment variables loaded from the .env file from t
 uv run --native-tls --env-file ../../../.env scripts/<script_name>.py
 ```
 
-- **`scripts/at_first_glance.py`** — Get a quick overview of the current Neo4j instance (node count, relationship count, and their details). Run this first to understand what's in the graph.
 - **`scripts/health_check.py`** — Verify connectivity to the Neo4j instance. Run this to confirm the database is reachable and credentials are valid.
