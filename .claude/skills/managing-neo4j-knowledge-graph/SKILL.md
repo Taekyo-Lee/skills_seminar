@@ -65,14 +65,14 @@ Upsert semantics — creates if not exists, updates if exists (matched by primar
 1. **Do NOT run health_check.py** unless the user explicitly asks about connectivity, health, or status. Go straight to the query.
 2. **Do NOT use `python3 -c` or `uv run -c`** — they lack the required dependencies.
 3. **All paths must be absolute** — relative paths cause files to be written to wrong locations.
-4. All commands run from the project root: `/home/jetlee/workspace/skills_seminar`
+4. All commands run from the project root: `<PROJECT_ROOT>`
 
 ## Running Ad-Hoc Queries
 
 For any user request that is NOT an exact match for a pre-built script, follow these 3 steps:
 
 **Step 1.** Write a temporary script to this absolute path:
-`/home/jetlee/workspace/skills_seminar/.claude/skills/managing-neo4j-knowledge-graph/scripts/_adhoc.py`
+`<PROJECT_ROOT>/.claude/skills/managing-neo4j-knowledge-graph/scripts/_adhoc.py`
 
 ```python
 # /// script
@@ -134,7 +134,7 @@ manager.delete_nodes(NodeSearch(label="Technology", name="ROS2"), namespace=NAME
 
 ## Available Scripts on Demand
 
-Run from the project root (`/home/jetlee/workspace/skills_seminar`):
+Run from the project root (`<PROJECT_ROOT>`):
 
 ```bash
 uv run --native-tls --env-file .env .claude/skills/managing-neo4j-knowledge-graph/scripts/<script_name>.py
