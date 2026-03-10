@@ -93,6 +93,6 @@ WIDTH = 52
 ## Verification Command
 
 ```bash
-cd /home/jetlee/workspace/skills_seminar
+cd <PROJECT_ROOT>
 uv run --native-tls --env-file .env .claude/skills/managing-neo4j-knowledge-graph/scripts/<script>.py
 ```
