@@ -3,7 +3,7 @@ Hello Gemini-CLI! You only need to care about Gemini CLI — ignore other agent 
 
 ## Overview
 
-This is a **demo project** that showcases how to build and use **agent skills** across multiple AI-assisted coding platforms. It serves as a teaching resource for an upcoming seminar, demonstrating practical integration of specialized skill modules.
+This is a **demo project** that showcases how to build and use **agent skills** across multiple AI-assisted coding platforms. It serves as a teaching resource for an upcoming seminar, demonstrating practical integration of specialized skill modules at three progressive complexity levels.
 
 ### Platforms Covered
 
@@ -41,9 +41,11 @@ Each platform runs skill scripts from a different working directory. This affect
 
 ## Available Skills
 
-| Skill | Description |
-|---|---|
-| `managing-neo4j-knowledge-graph` | Manages Neo4j graph database operations (health, connectivity, querying, CRUD, schema inspection) |
+| Skill | Level | Type | Description |
+|---|---|---|---|
+| `jira-jql-assistant` | 1 | Simple (SKILL.md only) | Translates natural language to JQL queries and explains syntax |
+| `jira-issue-manager` | 2 | Bundled (SKILL.md + scripts) | CRUD operations on JIRA issues via REST API |
+| `jira-sprint-review` | 3 | Composite (orchestrator) | Orchestrates sub-skills to generate sprint review documents |
 
 ---
 
